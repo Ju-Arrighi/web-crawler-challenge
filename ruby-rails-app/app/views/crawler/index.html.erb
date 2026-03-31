@@ -6,35 +6,35 @@
   <div class="flex gap-3 mb-6">
     <%= link_to "All entries",
           crawler_path,
-          class: "px-4 py-2 rounded border #{@filter.nil? ? 'bg-orange-500 text-white border-orange-500' : 'border-gray-300 hover:bg-gray-100'}" %>
+          class: "px-4 py-2 rounded border text-sm font-medium #{@filter.nil? ? 'bg-gray-900 text-white border-gray-900' : 'border-gray-300 text-gray-700 hover:bg-gray-100'}" %>
 
     <%= link_to "Long titles (>5 words) · by comments",
           crawler_path(filter: "long_titles"),
-          class: "px-4 py-2 rounded border #{@filter == 'long_titles' ? 'bg-orange-500 text-white border-orange-500' : 'border-gray-300 hover:bg-gray-100'}" %>
+          class: "px-4 py-2 rounded border text-sm font-medium #{@filter == 'long_titles' ? 'bg-gray-900 text-white border-gray-900' : 'border-gray-300 text-gray-700 hover:bg-gray-100'}" %>
 
     <%= link_to "Short titles (≤5 words) · by points",
           crawler_path(filter: "short_titles"),
-          class: "px-4 py-2 rounded border #{@filter == 'short_titles' ? 'bg-orange-500 text-white border-orange-500' : 'border-gray-300 hover:bg-gray-100'}" %>
+          class: "px-4 py-2 rounded border text-sm font-medium #{@filter == 'short_titles' ? 'bg-gray-900 text-white border-gray-900' : 'border-gray-300 text-gray-700 hover:bg-gray-100'}" %>
   </div>
 
   <p class="text-sm text-gray-500 mb-4"><%= @entries.size %> entries shown</p>
 
   <table class="w-full text-sm border-collapse">
     <thead>
-      <tr class="bg-gray-100 text-left">
-        <th class="px-3 py-2 border">#</th>
-        <th class="px-3 py-2 border">Title</th>
-        <th class="px-3 py-2 border text-right">Points</th>
-        <th class="px-3 py-2 border text-right">Comments</th>
+      <tr class="bg-gray-800 text-white text-left">
+        <th class="px-3 py-2">#</th>
+        <th class="px-3 py-2">Title</th>
+        <th class="px-3 py-2 text-right">Points</th>
+        <th class="px-3 py-2 text-right">Comments</th>
       </tr>
     </thead>
-    <tbody>
-      <% @entries.each do |entry| %>
-        <tr class="hover:bg-gray-50">
-          <td class="px-3 py-2 border text-gray-400"><%= entry.rank %></td>
-          <td class="px-3 py-2 border"><%= entry.title %></td>
-          <td class="px-3 py-2 border text-right"><%= entry.points %></td>
-          <td class="px-3 py-2 border text-right"><%= entry.comments %></td>
+    <tbody class="divide-y divide-gray-200">
+      <% @entries.each_with_index do |entry, i| %>
+        <tr class="<%= i.odd? ? 'bg-gray-100' : 'bg-gray-50' %> hover:bg-gray-200">
+          <td class="px-3 py-2 text-gray-400"><%= entry.rank %></td>
+          <td class="px-3 py-2"><%= entry.title %></td>
+          <td class="px-3 py-2 text-right"><%= entry.points %></td>
+          <td class="px-3 py-2 text-right"><%= entry.comments %></td>
         </tr>
       <% end %>
     </tbody>
