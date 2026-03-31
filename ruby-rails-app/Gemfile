@@ -56,7 +56,11 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # RSpec for testing
-  gem 'rspec-rails', '~> 8.0.0'
+  gem "rspec-rails", "~> 8.0.0"
+  gem "rails-controller-testing"
+
+  # Library for stubbing and setting expectations on HTTP requests in Ruby
+  gem "webmock"
 end
 
 group :development do

@@ -21,7 +21,9 @@ class HackerNewsScraper
   def get(url)
     uri = URI(url)
     response = Net::HTTP.get_response(uri)
-    response.body
+    response.body.force_encoding("UTF-8")
+  rescue StandardError => e
+    raise "Failed to fetch HackerNews: #{e.message}"
   end
 
   def parse(html)
