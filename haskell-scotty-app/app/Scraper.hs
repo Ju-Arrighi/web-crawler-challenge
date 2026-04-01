@@ -1,10 +1,11 @@
-module Scraper (Entry(..), fetchEntries) where
+module Scraper (Entry(..), fetchEntries, parseDocument, parseFirstInt) where
 
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import Data.Char (isDigit)
 import Data.Maybe (listToMaybe, fromMaybe)
+import qualified Data.ByteString.Lazy as BL
 import Network.HTTP.Simple (httpLBS, parseRequest, getResponseBody)
 import Text.HTML.DOM (parseLBS)
 import Text.XML.Cursor
@@ -25,10 +26,13 @@ fetchEntries :: IO [Entry]
 fetchEntries = do
   request  <- parseRequest "https://news.ycombinator.com/"
   response <- httpLBS request
-  let doc    = parseLBS (getResponseBody response)
-      cursor = fromDocument doc
+  return $ parseDocument (getResponseBody response)
+
+parseDocument :: BL.ByteString -> [Entry]
+parseDocument bs =
+  let cursor  = fromDocument (parseLBS bs)
       athings = cursor $// element "tr" >=> check (\c -> any ("athing" `T.isInfixOf`) (attribute "class" c))
-  return $ take 30 $ zipWith parseRow [1..] athings
+  in  take 30 $ zipWith parseRow [1..] athings
 
 parseRow :: Int -> Cursor -> Entry
 parseRow i athingCursor =

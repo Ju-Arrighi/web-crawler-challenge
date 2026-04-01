@@ -7,7 +7,7 @@ import qualified Data.Text as T
 import Data.Char (isAlphaNum)
 import Scraper (Entry(..))
 
-data FilterType = AllEntries | LongTitles | ShortTitles deriving (Eq)
+data FilterType = AllEntries | LongTitles | ShortTitles deriving (Eq, Show)
 
 parseFilter :: Maybe Text -> FilterType
 parseFilter (Just "long_titles")  = LongTitles

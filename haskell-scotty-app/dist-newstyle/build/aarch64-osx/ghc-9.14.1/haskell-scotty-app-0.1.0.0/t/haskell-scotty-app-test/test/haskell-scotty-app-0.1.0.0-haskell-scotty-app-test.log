@@ -1,7 +1,52 @@
 Test suite haskell-scotty-app-test: RUNNING...
 
+Filter
+  parseFilter
+    returns AllEntries for Nothing [✔]
+    returns LongTitles for "long_titles" [✔]
+    returns ShortTitles for "short_titles" [✔]
+    returns AllEntries for an unknown value [✔]
+    returns AllEntries for an empty string [✔]
+  wordCount
+    returns 0 for an empty string [✔]
+    returns 1 for a single word [✔]
+    counts multiple words correctly [✔]
+    handles extra whitespace [✔]
+    returns 0 for pure punctuation tokens [✔]
+    counts a 6-word title as 6 [✔]
+    counts a 5-word title as 5 [✔]
+  applyFilter
+    AllEntries
+      returns all entries in original order [✔]
+      returns empty list for empty input [✔]
+    LongTitles
+      only includes entries with more than 5 words [✔]
+      sorts by comments descending [✔]
+      returns empty list for empty input [✔]
+      returns empty list when no entries have long titles [✔]
+    ShortTitles
+      only includes entries with 5 words or fewer [✔]
+      sorts by points descending [✔]
+      returns empty list for empty input [✔]
+      returns empty list when no entries have short titles [✔]
+    AllEntries preserves list length [✔]
+      +++ OK, passed 100 tests.
+Scraper
+  parseFirstInt
+    parses a points string [✔]
+    parses singular point [✔]
+    parses a comments string [✔]
+    returns 0 for an empty string [✔]
+    returns 0 when there are no digits [✔]
+    returns 0 for "discuss" (HN job post with no comments) [✔]
+    parses a number with leading zeros [✔]
+  fixture parsing
+    parses all 3 entries from the fixture [✔]
+    extracts title, points, comments, and rank for a normal entry [✔]
+    returns 0 comments for a discuss-style entry [✔]
+    returns 0 points for an entry without a score element [✔]
 
-Finished in 0.0002 seconds
-0 examples, 0 failures
+Finished in 0.0049 seconds
+34 examples, 0 failures
 Test suite haskell-scotty-app-test: PASS
 Test suite logged to: /Users/ju-arrighi/code/Ju-Arrighi/web-crawler-challenge/haskell-scotty-app/./dist-newstyle/build/aarch64-osx/ghc-9.14.1/haskell-scotty-app-0.1.0.0/t/haskell-scotty-app-test/test/haskell-scotty-app-0.1.0.0-haskell-scotty-app-test.log

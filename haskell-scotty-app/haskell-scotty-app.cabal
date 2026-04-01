@@ -85,6 +85,8 @@ test-suite haskell-scotty-app-test
     other-modules:
         FilterSpec
       , ScraperSpec
+      , Filter
+      , Scraper
     build-tool-depends: hspec-discover:hspec-discover
     hs-source-dirs:     test, app
     build-depends:
@@ -93,6 +95,7 @@ test-suite haskell-scotty-app-test
       , QuickCheck        >= 2.14
       , text              >= 2.0
       , bytestring        >= 0.11
+      , http-conduit      >= 2.3
       , html-conduit      >= 1.3
       , xml-conduit       >= 1.9
     default-language:   Haskell2010
