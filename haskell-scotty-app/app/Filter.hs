@@ -1,4 +1,4 @@
-module Filter (FilterType(..), parseFilter, applyFilter) where
+module Filter (FilterType(..), parseFilter, applyFilter, wordCount) where
 
 import Data.List (sortBy)
 import Data.Ord (comparing, Down(..))

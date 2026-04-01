@@ -1,5 +1,4 @@
 packages: .
 
-allow-newer: False
-constraints: scotty == 0.22,
-             aeson == 2.2.3.0
+allow-newer: all
+constraints: scotty == 0.22

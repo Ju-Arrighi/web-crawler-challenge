@@ -1,0 +1,7 @@
+Test suite haskell-scotty-app-test: RUNNING...
+
+
+Finished in 0.0002 seconds
+0 examples, 0 failures
+Test suite haskell-scotty-app-test: PASS
+Test suite logged to: /Users/ju-arrighi/code/Ju-Arrighi/web-crawler-challenge/haskell-scotty-app/./dist-newstyle/build/aarch64-osx/ghc-9.14.1/haskell-scotty-app-0.1.0.0/t/haskell-scotty-app-test/test/haskell-scotty-app-0.1.0.0-haskell-scotty-app-test.log
